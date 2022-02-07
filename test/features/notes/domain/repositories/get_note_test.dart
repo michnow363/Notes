@@ -1,14 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:notes/features/notes/domain/entities/note.dart';
-import 'package:notes/features/notes/domain/repositories/note_repository.dart';
 import 'package:notes/features/notes/domain/usecases/GetNote.dart';
 
-import 'note_repository_test.mocks.dart';
+import '../mocks.mocks.dart';
 
-@GenerateMocks([NoteRepository])
 void main() {
   late GetNote useCase;
   late MockNoteRepository mockNoteRepository;

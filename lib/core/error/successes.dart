@@ -6,3 +6,4 @@ abstract class Success extends Equatable {
 }
 
 class DeleteSuccess extends Success { }
+class UpdateSuccess extends Success { }
