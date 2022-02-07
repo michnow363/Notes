@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:notes/features/notes/domain/entities/note.dart';
-import 'package:notes/features/notes/domain/usecases/GetNote.dart';
+import 'package:notes/features/notes/domain/usecases/get_note.dart';
 
 import '../mocks.mocks.dart';
 

@@ -45,8 +45,8 @@ class MockNoteRepository extends _i1.Mock implements _i3.NoteRepository {
                   _FakeEither_0<_i5.Failure, _i7.Success>()))
           as _i4.Future<_i2.Either<_i5.Failure, _i7.Success>>);
   @override
-  _i4.Future<_i2.Either<_i5.Failure, _i7.Success>> createNote(_i6.Note? note) =>
-      (super.noSuchMethod(Invocation.method(#createNote, [note]),
+  _i4.Future<_i2.Either<_i5.Failure, _i7.Success>> createNote(String? name) =>
+      (super.noSuchMethod(Invocation.method(#createNote, [name]),
               returnValue: Future<_i2.Either<_i5.Failure, _i7.Success>>.value(
                   _FakeEither_0<_i5.Failure, _i7.Success>()))
           as _i4.Future<_i2.Either<_i5.Failure, _i7.Success>>);
