@@ -10,12 +10,12 @@ import 'note_repository_test.mocks.dart';
 
 @GenerateMocks([NoteRepository])
 void main() {
-  late GetNote usecase;
+  late GetNote useCase;
   late MockNoteRepository mockNoteRepository;
 
   setUp(() {
     mockNoteRepository = MockNoteRepository();
-    usecase = GetNote(repository: mockNoteRepository);
+    useCase = GetNote(repository: mockNoteRepository);
   });
 
   const noteName = "note1";
@@ -29,7 +29,7 @@ void main() {
     "should get note for given name from repository",
         () async {
       when(mockNoteRepository.getNote(noteName)).thenAnswer((_) async => Right(note));
-      final result = await usecase(name: noteName);
+      final result = await useCase(const Params(name: noteName));
 
       expect(result, Right(note));
       verify(mockNoteRepository.getNote(noteName));
