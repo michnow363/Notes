@@ -2,17 +2,16 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../../core/error/failures.dart';
-import '../../../../core/error/successes.dart';
 import '../../../../core/usecases/usecases.dart';
 import '../repositories/note_repository.dart';
 
-class CreateNote implements UseCase<Success, Params>{
+class CreateNote implements UseCase<void, Params>{
   final NoteRepository repository;
 
   CreateNote({required this.repository});
 
   @override
-  Future<Either<Failure, Success>> call(Params params) {
+  Future<Either<Failure, void>> call(Params params) {
     return repository.createNote(params.name);
   }
 }

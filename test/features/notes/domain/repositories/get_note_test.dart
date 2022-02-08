@@ -4,13 +4,13 @@ import 'package:mockito/mockito.dart';
 import 'package:notes/features/notes/domain/entities/note.dart';
 import 'package:notes/features/notes/domain/usecases/get_note.dart';
 
-import '../mocks.mocks.dart';
+import '../domain_mock.mocks.dart';
 
 void main() {
   late GetNote useCase;
-  late MockNoteRepository mockNoteRepository;
+  late final MockNoteRepository mockNoteRepository;
 
-  setUp(() {
+  setUpAll(() {
     mockNoteRepository = MockNoteRepository();
     useCase = GetNote(repository: mockNoteRepository);
   });
@@ -25,7 +25,7 @@ void main() {
   test(
     "should get note for given name from repository",
         () async {
-      when(mockNoteRepository.getNote(noteName)).thenAnswer((_) async => Right(note));
+      when(mockNoteRepository.getNote(any)).thenAnswer((_) async => Right(note));
       final result = await useCase(const Params(name: noteName));
 
       expect(result, Right(note));
