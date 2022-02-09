@@ -1,6 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
+import 'package:notes/core/error/exceptions.dart';
+import 'package:notes/core/error/failures.dart';
 import 'package:notes/features/notes/data/models/note_model.dart';
 import 'package:notes/features/notes/data/repositories/note_repository_impl.dart';
 
@@ -41,6 +43,13 @@ void main() {
     when(mockNoteDatasource.updateNote(any, any)).thenAnswer((_) async => null);
     noteRepositoryImpl.updateNote(noteName, newContent);
     verify(mockNoteDatasource.updateNote(noteName, newContent));
+    verifyNoMoreInteractions(mockNoteDatasource);
+  });
+  test('should get GetException from database if there  is no file with given name', () async {
+    when(mockNoteDatasource.getNote(any)).thenThrow(HiveException());
+    final result = await noteRepositoryImpl.getNote(noteName);
+    expect(result, Left(GetNoteFailure()));
+    verify(mockNoteDatasource.getNote(noteName));
     verifyNoMoreInteractions(mockNoteDatasource);
   });
 }

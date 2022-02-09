@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:notes/core/error/exceptions.dart';
 import 'package:notes/core/error/failures.dart';
 import 'package:notes/features/notes/data/datasources/note_datasource.dart';
 import 'package:notes/features/notes/domain/repositories/note_repository.dart';
@@ -21,7 +22,11 @@ class NoteRepositoryImpl implements NoteRepository {
 
   @override
   Future<Either<Failure, Note>> getNote(String name) async {
-    return Right(await noteDatasource.getNote(name));
+    try {
+      return Right(await noteDatasource.getNote(name));
+    } on HiveException {
+      return Left(GetNoteFailure());
+    }
   }
 
   @override
