@@ -6,3 +6,6 @@ abstract class Failure extends Equatable {
 }
 
 class GetNoteFailure extends Failure {}
+class CreateNoteFailure extends Failure {}
+class UpdateNoteFailure extends Failure {}
+class DeleteNoteFailure extends Failure {}

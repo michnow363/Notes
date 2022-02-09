@@ -12,12 +12,20 @@ class NoteRepositoryImpl implements NoteRepository {
 
   @override
   Future<Either<Failure, void>> createNote(String name) async {
-    return Right(noteDatasource.createNote(name));
+    try{
+      return Right(noteDatasource.createNote(name));
+    } on HiveException {
+      return Left(CreateNoteFailure());
+    }
   }
 
   @override
   Future<Either<Failure, void>> deleteNote(String name) async {
-    return Right(noteDatasource.deleteNote(name));
+    try{
+      return Right(noteDatasource.deleteNote(name));
+    } on HiveException {
+      return Left(DeleteNoteFailure());
+    }
   }
 
   @override
@@ -31,6 +39,10 @@ class NoteRepositoryImpl implements NoteRepository {
 
   @override
   Future<Either<Failure, void>> updateNote(String name, String content) async {
-    return Right(noteDatasource.updateNote(name, content));
+    try{
+      return Right(noteDatasource.updateNote(name, content));
+    } on HiveException {
+      return Left(UpdateNoteFailure());
+    }
   }
 }
