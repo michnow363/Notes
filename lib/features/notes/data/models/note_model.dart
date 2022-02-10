@@ -3,8 +3,8 @@ import 'package:notes/features/notes/domain/entities/note.dart';
 
 @HiveType(typeId: 1)
 class NoteModel extends Note {
-  NoteModel({required this.name, required this.content, required this.date,}) :
-        super(name: name, content: content, creationDate: date);
+  NoteModel({required this.name, required this.content, required this.creationDate,}) :
+        super(name: name, content: content, creationDate: creationDate);
 
   @HiveField(0)
   String name;
@@ -13,5 +13,5 @@ class NoteModel extends Note {
   String content;
 
   @HiveField(2)
-  DateTime date;
+  DateTime creationDate;
 }

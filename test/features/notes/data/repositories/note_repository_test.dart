@@ -18,9 +18,9 @@ void main() {
 
   const noteName = "note1";
   const newContent = "new test content";
-  final noteModel = NoteModel(name: 'note1', content: 'test content', date: DateTime.utc(2018, 11, 9));
+  final noteModel = NoteModel(name: 'note1', content: 'test content', creationDate: DateTime.utc(2018, 11, 9));
 
-  group('database CRUD successes', () {
+  group('datasource CRUD operations successes', () {
     test('should get Note from database', () async {
       when(mockNoteDatasource.getNote(any)).thenAnswer((_) async => noteModel);
       final result = await noteRepositoryImpl.getNote(noteName);
@@ -29,25 +29,25 @@ void main() {
       verifyNoMoreInteractions(mockNoteDatasource);
     });
     test('should create Note in database', () async {
-      when(mockNoteDatasource.createNote(any)).thenAnswer((_) async => null);
+      when(mockNoteDatasource.createNote(any)).thenAnswer((_) async => Future.value());
       noteRepositoryImpl.createNote(noteName);
       verify(mockNoteDatasource.createNote(noteName));
       verifyNoMoreInteractions(mockNoteDatasource);
     });
     test('should delete Note from database', () async {
-      when(mockNoteDatasource.deleteNote(any)).thenAnswer((_) async => null);
+      when(mockNoteDatasource.deleteNote(any)).thenAnswer((_) async => Future.value());
       noteRepositoryImpl.deleteNote(noteName);
       verify(mockNoteDatasource.deleteNote(noteName));
       verifyNoMoreInteractions(mockNoteDatasource);
     });
     test('should update Note in database', () async {
-      when(mockNoteDatasource.updateNote(any, any)).thenAnswer((_) async => null);
+      when(mockNoteDatasource.updateNote(any, any)).thenAnswer((_) async => Future.value());
       noteRepositoryImpl.updateNote(noteName, newContent);
       verify(mockNoteDatasource.updateNote(noteName, newContent));
       verifyNoMoreInteractions(mockNoteDatasource);
     });
   });
-  group('database CRUD failures', () {
+  group('datasource CRUD operations failures', () {
     test('should get HiveException from database and return GetNoteFailure', () async {
       when(mockNoteDatasource.getNote(any)).thenThrow(HiveException());
       final result = await noteRepositoryImpl.getNote(noteName);
